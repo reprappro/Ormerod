@@ -2453,54 +2453,6 @@ AcDbCircle
   6
 ByLayer
  10
-0.0
- 20
-0.0
- 30
-0.0
- 40
-3.0
-  0
-CIRCLE
-  5
-53
-100
-AcDbEntity
-100
-AcDbCircle
-  8
-0
- 62
-256
-370
--1
-  6
-ByLayer
- 10
-20.0
- 20
-0.0
- 30
-0.0
- 40
-5.0
-  0
-CIRCLE
-  5
-54
-100
-AcDbEntity
-100
-AcDbCircle
-  8
-0
- 62
-256
-370
--1
-  6
-ByLayer
- 10
 -70.4000000000000057
  20
 80.0
@@ -2511,7 +2463,7 @@ ByLayer
   0
 CIRCLE
   5
-55
+53
 100
 AcDbEntity
 100
@@ -2535,7 +2487,7 @@ ByLayer
   0
 CIRCLE
   5
-56
+54
 100
 AcDbEntity
 100
@@ -2559,7 +2511,7 @@ ByLayer
   0
 CIRCLE
   5
-57
+55
 100
 AcDbEntity
 100
@@ -2580,6 +2532,54 @@ ByLayer
 0.0
  40
 1.2
+  0
+CIRCLE
+  5
+56
+100
+AcDbEntity
+100
+AcDbCircle
+  8
+0
+ 62
+256
+370
+-1
+  6
+ByLayer
+ 10
+0.0
+ 20
+-7.0
+ 30
+0.0
+ 40
+3.0
+  0
+CIRCLE
+  5
+57
+100
+AcDbEntity
+100
+AcDbCircle
+  8
+0
+ 62
+256
+370
+-1
+  6
+ByLayer
+ 10
+20.0
+ 20
+-7.0
+ 30
+0.0
+ 40
+5.0
   0
 ENDSEC
   0
