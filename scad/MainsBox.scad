@@ -8,7 +8,7 @@ mainsHoleZ = 57;
 
 mainsDepth = 35;
 
-// Countersunk Self Tapping Screws (RS 546-5480 - UTS #4, 13mm)
+// Countersunk Self Tapping Screws (RS 546-5480 - UTS #6, 13mm)
 
 ScrewDia = 2.84;
 ScrewPitch = 0.635;
