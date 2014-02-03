@@ -1,10 +1,10 @@
 dx= 21.5 - 3.3;
 dy = 73 - 35.5;
-height = 15;
+height = 23.25-2.8+20-2.8;
 
-reset_insert();
+//reset_insert();
 
-//reset_block();
+reset_block();
 
 module reset_block()
 {
