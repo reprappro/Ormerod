@@ -8,7 +8,7 @@
 
 */
 
-// Distance between holes.  (Duet needs 6.6, 11.1 and 13.5)
+// Distance between holes.  (Duet needs 6.6, 11.1 and 13.5 + a spacer)
 
 offset = 6.6;
 
@@ -17,6 +17,17 @@ offset = 6.6;
 height = 7;
 
 PCBOffsetClip();
+
+//PCBSpacer();
+
+module PCBSpacer()
+{
+	difference()
+	{
+		cylinder(r = 5, h = height, center=true, $fn=30);
+		cylinder(r = 1.7, h = 2*height, center=true, $fn=30);
+	}
+}
 
 module PCBOffsetClip()
 {
