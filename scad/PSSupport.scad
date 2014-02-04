@@ -7,72 +7,117 @@
 
 */
 
+PSSupport(topClip=false);
+
+//*******************************************************************
+
 PSx = 110;
 PSy = 50;
-height = 25;
-drop=5;
-shim = 5; // 11 for top one
+height = 32;
+drop=27;
+shim = 5;
+cornerSize=45;
+tubeD=125;
+PSYOffset=-2;
 
-//mirror([1,0,0]) // Uncomment for top one
-PSSupport();
+XMountHole1=10;
+XMountHole2=95;
+ZMountHole12=12;
+YMountHole3=37;
+ZMountHole3=20.5;
 
-module PSSupport()
+DuetHoleDX=92;
+DuetHoleZ=22;
+DuetHoleX=-4;
+
+BaseZ=height-drop;
+
+module PSSupport(topClip=false)
 {
-	difference()
+	intersection()
 	{
-		union()
-		{
-			cube([PSx+6, PSy+6, 3], center=true);
-			for(x=[-1,1])for(y=[-1,1])
-				translate([x*(PSx+6)/2, y*(PSy+6)/2, -1.5])
-				{
-					if(x < 0 && y < 0)
-					{
-							Corner();
-					} else if (x < 0 && y > 0)
-					{
-						mirror([0, 1, 0])
-							Corner();
-					}else if (x > 0 && y < 0)
-					{
-						mirror([1, 0, 0])
-							Corner();
-					}else
-					{
-						mirror([1, 0, 0])
-						mirror([0, 1, 0])
-							Corner();
-					}
-						
-				}
-		}
-		translate([0,0,1.5*height-(drop+ 0.5)-shim])
+		intersection()
 		{
 			difference()
 			{
-				cube([PSx, PSy, height], center=true);
-				translate([-(PSx+6-15)/2, (PSy+6-15)/2,-height/2])
-					cube([25, 25, 2*shim], center=true);
+				translate([0,0,0.5*height])
+					cube([PSx+6, PSy+6, height], center=true);
+		
+				translate([0,0,BaseZ+0.5*height])
+				{
+					union()
+					{
+						difference()
+						{
+							cube([PSx, PSy, height], center=true);
+							translate([-(PSx+6)/2, (PSy+6)/2,-height/2])
+								cube([30, 30, 2*shim], center=true);
+						}
+						if(!topClip)
+							cube([PSx-40, PSy+20, height], center=true);
+					}
+				}
+				cube([PSx-30, PSy-30, 4*height], center=true);
+				for(x=[-1,1])for(y=[-1,1])
+					translate([x*(PSx-45)/2,y*(PSy-15)/2,0])
+						cylinder(r=1.7,h=4*height,center=true,$fn=30);
+		
+				// Mounting hole centres
+				echo((PSx-45));
+				echo((PSy-15));
+		
+				DuetHoles();
+
+				if(!topClip)
+					HorizontalMountHoles();			
 			}
+			translate([0,PSYOffset,0])
+				cylinder(r=tubeD/2,h=500,center=true,$fn=200);
 		}
-		cube([PSx-30, PSy-30, 4*height], center=true);
-		for(x=[-1,1])for(y=[-1,1])
-			translate([x*(PSx-45)/2,y*(PSy-15)/2,0])
-				cylinder(r=1.7,h=4*height,center=true,$fn=30);
+
+		if(topClip)
+		{
+			translate([0,0,DuetHoleZ+5])
+				cube([PSx*2, PSy*2, 10], center=true);
+		}
 	}
 }
 
-module Corner()
-{
-	difference()
-	{
-		polyhedron(
-	  		points=[ [0,0,0],[30,0,0],[0,30,0],[0,0,2*height] ],                                 
-	  		triangles=[ [0,3,1],[0,2,3],[0,1,2],[1,3,2] ] 
-	 	);
-		translate([0,0,50+height])
-			cube([100,100,100], center=true);
-	}
 
+module HorizontalMountHoles()
+{
+	translate([-PSx/2+XMountHole1,-PSy/2,BaseZ+ZMountHole12])
+		rotate([90,0,0])
+			cylinder(r=1.7,h=10,center=true,$fn=30);
+	translate([-PSx/2+XMountHole2,-PSy/2,BaseZ+ZMountHole12])
+		rotate([90,0,0])
+			cylinder(r=1.7,h=12,center=true,$fn=30);
+	translate([PSx/2,-PSy/2+YMountHole3,BaseZ+ZMountHole3])
+		rotate([0,90,0])
+			cylinder(r=1.7,h=12,center=true,$fn=30);
+}
+
+
+module DuetHoles()
+{
+	union()
+	{
+		translate([-DuetHoleDX/2+DuetHoleX,-PSy/2,BaseZ+DuetHoleZ])
+		{
+			rotate([90,0,0])
+				cylinder(r=1.7,h=10,center=true,$fn=30);
+			rotate([90,0,0])
+				translate([0,0,1.2])
+					cylinder(r2=1.7, r1=6/2 ,h=2.5,center=true,$fn=30);			
+		}
+		translate([DuetHoleDX/2+DuetHoleX,-PSy/2,BaseZ+DuetHoleZ])
+		{
+			rotate([90,0,0])
+				cylinder(r=1.7,h=12,center=true,$fn=30);
+			rotate([90,0,0])
+				translate([0,0,1.2])
+					cylinder(r2=1.7, r1=6/2 ,h=2.5,center=true,$fn=30);
+		}
+	}
 }
 
