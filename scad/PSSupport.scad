@@ -13,8 +13,9 @@ PSSupport(topClip=false);
 
 PSx = 110;
 PSy = 50;
-height = 32;
-drop=27;
+
+BaseZ=3;
+liftZ=10;
 shim = 5;
 cornerSize=45;
 tubeD=125;
@@ -22,15 +23,18 @@ PSYOffset=-2;
 
 XMountHole1=10;
 XMountHole2=95;
-ZMountHole12=12;
+ZMountHole12=12 + liftZ;
 YMountHole3=37;
-ZMountHole3=20.5;
+ZMountHole3=20.5 + liftZ;
+
+height = ZMountHole3 + BaseZ + 5.5;
+drop = height - BaseZ;
 
 DuetHoleDX=92;
-DuetHoleZ=22;
+DuetHoleZ=22+liftZ;
 DuetHoleX=-4;
 
-BaseZ=height-drop;
+
 
 module PSSupport(topClip=false)
 {
@@ -50,8 +54,10 @@ module PSSupport(topClip=false)
 						difference()
 						{
 							cube([PSx, PSy, height], center=true);
-							translate([-(PSx+6)/2, (PSy+6)/2,-height/2])
-								cube([30, 30, 2*shim], center=true);
+							for(x=[0,1])for(y=[0,1])
+							translate([-(2*x-1)*(PSx+6)/2, (2*y-1)*(PSy+6)/2,
+								-height/2 + x*y*shim - shim])
+									cube([30, 30, 2*(liftZ+shim)], center=true);
 						}
 						if(!topClip)
 							cube([PSx-40, PSy+20, height], center=true);
@@ -78,7 +84,7 @@ module PSSupport(topClip=false)
 		if(topClip)
 		{
 			translate([0,0,DuetHoleZ+5])
-				cube([PSx*2, PSy*2, 10], center=true);
+				cube([PSx*2, PSy*2, 12], center=true);
 		}
 	}
 }
