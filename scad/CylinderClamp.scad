@@ -1,7 +1,7 @@
 
 
-cylinderOD=125;
-cylinderID=cylinderOD-2;
+cylinderID=125;
+cylinderOD=cylinderID+2;
 cylinderLength=250;
 
 clampZ=40;
@@ -80,6 +80,7 @@ module Cylinder(rad=125, ht = 200)
 module PlateScrewHoles()
 {
 	translate([0, -cylinderOD/2+clampY/2-clampThick, 0])
+	rotate([0,0,45])
 	union()
 	{
 		for(ang=[0:3])
@@ -109,7 +110,7 @@ module FrameClampHoles()
 				rotate([90,0,0])
 				{
 					cylinder(r=2.2,h=2*clampY,center=true,$fn=30);
-					translate([0,0,26])
+					translate([0,0,28])
 					{
 						cylinder(r=4.4,h=2*clampY,center=true,$fn=30);
 						translate([0,0,-41.5])

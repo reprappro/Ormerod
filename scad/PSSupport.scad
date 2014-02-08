@@ -11,15 +11,15 @@ PSSupport(topClip=false);
 
 //*******************************************************************
 
-PSx = 110;
-PSy = 50;
+PSx = 111.5;
+PSy = 51;
 
 BaseZ=3;
 liftZ=10;
 shim = 5;
 cornerSize=45;
 tubeD=125;
-PSYOffset=-2;
+PSYOffset=0;
 
 XMountHole1=10;
 XMountHole2=95;
@@ -33,7 +33,6 @@ drop = height - BaseZ;
 DuetHoleDX=92;
 DuetHoleZ=22+liftZ;
 DuetHoleX=-4;
-
 
 
 module PSSupport(topClip=false)
@@ -92,15 +91,30 @@ module PSSupport(topClip=false)
 
 module HorizontalMountHoles()
 {
+	union()
+	{
 	translate([-PSx/2+XMountHole1,-PSy/2,BaseZ+ZMountHole12])
 		rotate([90,0,0])
+		{
 			cylinder(r=1.7,h=10,center=true,$fn=30);
+			translate([0,0,2])
+				cylinder(r1=1.7, r2=6/2 ,h=2.5,center=true,$fn=30);
+		}
 	translate([-PSx/2+XMountHole2,-PSy/2,BaseZ+ZMountHole12])
 		rotate([90,0,0])
+		{
 			cylinder(r=1.7,h=12,center=true,$fn=30);
+			translate([0,0,2])
+				cylinder(r1=1.7, r2=6/2 ,h=2.5,center=true,$fn=30);
+		}
 	translate([PSx/2,-PSy/2+YMountHole3,BaseZ+ZMountHole3])
 		rotate([0,90,0])
+		{
 			cylinder(r=1.7,h=12,center=true,$fn=30);
+			translate([0,0,2])
+				cylinder(r1=1.7, r2=6/2 ,h=2.5,center=true,$fn=30);
+		}
+	}
 }
 
 
