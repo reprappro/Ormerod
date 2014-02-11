@@ -1,4 +1,4 @@
-﻿"y-cross-rib-thickness"=4
+﻿"y-cross-rib-thickness"=6
 "y-rib-thickness"=6
 "bed-plate-thickness"=3
 "x-plate-thickness"=5
