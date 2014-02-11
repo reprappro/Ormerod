@@ -7,6 +7,7 @@
 
 */
 
+//rotate([180,0,0]) // Uncomment for toppclip
 PSSupport(topClip=false);
 
 //*******************************************************************
@@ -19,7 +20,8 @@ liftZ=10;
 shim = 5;
 cornerSize=45;
 tubeD=125;
-PSYOffset=0;
+PSYOffset=-3.5;
+chopY=-3.5;
 
 XMountHole1=10;
 XMountHole2=95;
@@ -32,7 +34,7 @@ drop = height - BaseZ;
 
 DuetHoleDX=92;
 DuetHoleZ=22+liftZ;
-DuetHoleX=-4;
+DuetHoleX=-3;
 
 
 module PSSupport(topClip=false)
@@ -74,7 +76,12 @@ module PSSupport(topClip=false)
 				DuetHoles();
 
 				if(!topClip)
-					HorizontalMountHoles();			
+				{
+					HorizontalMountHoles();
+
+					translate([-(PSx-36)/2, -20, height-3])
+						cube([5, 50, 10], center=true);	
+				}		
 			}
 			translate([0,PSYOffset,0])
 				cylinder(r=tubeD/2,h=500,center=true,$fn=200);
@@ -83,8 +90,15 @@ module PSSupport(topClip=false)
 		if(topClip)
 		{
 			translate([0,0,DuetHoleZ+5])
+			difference()
+			{
 				cube([PSx*2, PSy*2, 12], center=true);
+				translate([-PSx/2+18-DuetHoleX,-PSy/2,-5])
+					cube([20, 200, 5], center=true);
+			}
 		}
+		translate([0, chopY, 0])
+				cube([PSx*2, PSy+6, 200], center=true);		
 	}
 }
 
