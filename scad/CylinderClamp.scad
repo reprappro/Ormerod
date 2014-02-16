@@ -65,8 +65,8 @@ module CylinderClamp()
 			PlateScrewHoles();
 			FrameClampHoles();
 		}
-		Support(ang=48);
-		Support(ang=-48);
+		//Support(ang=48);
+		//Support(ang=-48);
 	}
 }
 
@@ -89,21 +89,30 @@ module Cylinder(rad=125, ht = 200)
 module PlateScrewHoles()
 {
 	translate([0, -cylinderOD/2+clampY/2-clampThick, 0])
-	rotate([0,0,45])
 	union()
 	{
 		for(ang=[0:3])
 		{
-			rotate([0,0,ang*90])
+			rotate([0,0,ang*90+45])
 			{
-				translate([0, cylinderOD/2-ledgeThickness/2-(cylinderOD-cylinderID)/2, 0])
+				translate([0, cylinderOD/2-ledgeThickness/2-(cylinderOD-cylinderID)/2, 
+					0])
 				{
 					cylinder(r=1.7, h=50, center=true, $fn=20);
 					if(ang != 2)
 					translate([0, 0, -clampZ/2+1])
 						cylinder(r1=3, r2=1.7, h=2, center=true, $fn=20);
 				}
-			}	
+				rotate([0,0,45])
+				translate([0, cylinderOD/2-ledgeThickness/2-(cylinderOD-cylinderID)/2, 
+					0])
+				if(ang < 3)
+					{
+						translate([0, 0, -clampZ/8])
+						rotate([90,0,0])
+							cylinder(r=1.7, h=50, center=true, $fn=20);
+					}
+			}
 		}
 	}
 }
