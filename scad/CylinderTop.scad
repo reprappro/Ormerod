@@ -23,12 +23,17 @@ PSx = 111.5;
 PSy = 51;
 PSz = 203;
 PSYOffset=0;
-
+dx1=0.2;
+dy1=-1.2;
+dx2=0.3;
+dy2=-2.2;
+dx3=1;
+dy3=2.2;
+dx4=0;
+dy4=2.6;
 
 CylinderTop();
-
-
-
+//BlankFan();
 
 module CylinderTop()
 {
@@ -49,16 +54,16 @@ module CylinderTop()
 				Cylinder(rad=(cylinderID/2-ledgeThickness), ht = 2*cylinderLength);
 			}
 			translate([0,-cylinderOD+clampY/2-clampThick+26, 0])
-				translate([16,-16,0])
+				translate([16+dx1,-16+dy1,0])
 					cylinder(r=4,h=clampZ/2,center=true,$fn=20);
 			translate([0,-cylinderOD+clampY/2-clampThick+26, 0])
-				translate([-16,-16,0])
+				translate([-16+dx2,-16+dy2,0])
 					cylinder(r=4,h=clampZ/2,center=true,$fn=20);
 			translate([0,-cylinderOD+clampY/2-clampThick+cylinderOD-26, 0])
-				translate([16,16,0])
+				translate([16+dx3,16+dy3,0])
 					cylinder(r=4,h=clampZ/2,center=true,$fn=20);
 			translate([0,-cylinderOD+clampY/2-clampThick+cylinderOD-26, 0])
-				translate([-16,16,0])
+				translate([-16+dx4,16+dy4,0])
 					cylinder(r=4,h=clampZ/2,center=true,$fn=20);
 	
 			difference()
@@ -91,17 +96,17 @@ module CylinderTop()
 
 		translate([0,-cylinderOD+clampY/2-clampThick+26, 0])
 		{
-			translate([16,-16,0])
+			translate([16+dx1,-16+dy1,0])
 				cylinder(r=2,h=50,center=true,$fn=20);
-			translate([-16,-16,0])
+			translate([-16+dx2,-16+dy2,0])
 				cylinder(r=2,h=50,center=true,$fn=20);
 		}
 
 		translate([0,-cylinderOD+clampY/2-clampThick+cylinderOD-26, 0])
 		{
-			translate([16,16,0])
+			translate([16+dx3,16+dy3,0])
 				cylinder(r=2,h=50,center=true,$fn=20);
-			translate([-16,16,0])
+			translate([-16+dx4,16+dy4,0])
 				cylinder(r=2,h=50,center=true,$fn=20);
 		}
 	}				
@@ -163,6 +168,19 @@ module PlateScrewHoles()
 		}
 	}
 }
+
+module BlankFan()
+{
+	difference()
+	{
+		cube([40,40,3], center=true);
+		cylinder(r=38/2,h=20,center=true,$fn=50);
+		for(x=[-1,1])for(y=[-1,1])
+			translate([x*16,y*16,0])
+				cylinder(r=1.7, h=50, center=true, $fn=20);
+	}
+}
+
 
 
 
