@@ -1,6 +1,6 @@
 ﻿"y-cross-rib-thickness"=6
 "y-rib-thickness"=6
-"bed-plate-thickness"=3
+"bed-plate-thickness"=6
 "x-plate-thickness"=5
 "rod-diameter"=12
 "t-nut-hole-diameter"=3
