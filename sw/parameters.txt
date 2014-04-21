@@ -5,4 +5,5 @@
 "rod-diameter"=12
 "t-nut-hole-diameter"=3
 "y-plate-thickness"=5
+"enclosure-thickness"=0.6
 
