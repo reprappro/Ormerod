@@ -1,8 +1,9 @@
-﻿"y-cross-rib-thickness"=4
+﻿"y-cross-rib-thickness"=6
 "y-rib-thickness"=6
-"bed-plate-thickness"=3
+"bed-plate-thickness"=6
 "x-plate-thickness"=5
 "rod-diameter"=12
 "t-nut-hole-diameter"=3
 "y-plate-thickness"=5
+"enclosure-thickness"=0.6
 
