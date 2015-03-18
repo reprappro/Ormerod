@@ -1,0 +1,15 @@
+"y-cross-rib-thickness"=6
+"y-rib-thickness"=6
+"bed-plate-thickness"=6
+"x-plate-thickness"=5
+"rod-diameter"=12
+"t-nut-hole-diameter"=3
+"y-plate-thickness"=5
+"enclosure-thickness"=0.6
+"M3-Clearance"=3.3
+"M4-Clearance"=4.3
+"M5-Clearance"=5.3
+"M6-Clearance"=6.3
+"M8-Clearance"=8.3
+"623-Bearing-Dia"=11.2
+"MR93ZZ-Bearing-Dia"=9.1
